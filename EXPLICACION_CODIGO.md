@@ -1,128 +1,202 @@
-# Explicación del Código del Proyecto "Carina"
+🧠 Proyecto CARINA
 
-¡Hola! Aquí tienes la explicación detallada del proyecto, pensada para principiantes. Vamos a ver el código como si fueran las instrucciones de un recetario.
+Versión 3.1 (Python - Conectado)
 
-Nuestros personajes son:
-*   **El Cocinero** (el código en `objectlevel.py`)
-*   **El Catador** (el código en `metalevel.py`)
+Carina es un sistema de razonamiento jerárquico implementado en Python.
+Está compuesto por dos niveles principales: un nivel de razonamiento base (Object-Level) y un nivel meta (Meta-Level) que supervisa y valida los resultados generados por el primero.
+
 
 ---
 
-### **Archivo 1: `main.py` (El Botón de "Empezar")**
+📁 Estructura del Proyecto
 
-Este es el archivo más simple. Su único trabajo es iniciar todo el proceso.
+carina/
+│
+├── main.py
+├── objectlevel.py
+├── metalevel.py
+└── lib/
+    ├── matrix.py
+    └── neuralnetwork.py
 
-```python
-# 1. "Para empezar, necesito la receta del Cocinero"
-#    Importamos la clase "Reasoner" (nuestro Cocinero) desde el archivo objectlevel.py
+
+---
+
+⚙️ Descripción General
+
+El sistema opera en dos niveles complementarios:
+
+Nivel de razonamiento (Object-Level)
+Ejecuta tareas lógicas o computacionales, como el procesamiento en una red neuronal.
+Los resultados obtenidos se almacenan en una base de conocimiento local.
+
+Nivel meta (Meta-Level)
+Supervisa y evalúa los resultados del nivel anterior, verificando su coherencia o existencia dentro de la base de conocimiento.
+
+
+El flujo de ejecución comienza en main.py, que instancia al razonador base y pone en marcha todo el proceso.
+
+
+---
+
+🚀 Ejecución del Programa
+
+1. Archivo main.py
+
+Punto de entrada del sistema.
+Su función principal es crear una instancia del razonador (Reasoner) y ejecutar su método principal run().
+
 from objectlevel import Reasoner
 
-# 2. "Esta es la tarea principal que vamos a hacer"
 def main():
-    # 3. "Contratamos a un Cocinero para que trabaje"
-    #    Creamos una copia real y funcional del Cocinero. La guardamos en la variable 'r'.
     r = Reasoner("single")
-
-    # 4. "Cocinero, ¡ponte a trabajar!"
-    #    Llamamos a su lista de tareas principal, que se llama 'run'.
     r.run()
 
-# 5. "Cuando le de al 'Play' a este archivo, empieza con la tarea 'main'"
-#    Esta línea es un estándar en Python para indicar dónde comienza el programa.
 if __name__ == "__main__":
     main()
-```
 
-**En resumen:** `main.py` es como el dedo que pulsa el botón de "ON". Contrata a un Cocinero y le dice que empiece a cocinar.
+Flujo:
+
+1. Se importa la clase Reasoner.
+
+
+2. Se crea una instancia con el modo "single".
+
+
+3. Se ejecuta la función principal run().
+
+
+4. El programa comienza únicamente si el archivo es ejecutado directamente.
+
+
+
 
 ---
 
-### **Archivo 2: `objectlevel.py` (La Receta del Cocinero)**
+2. Archivo objectlevel.py
 
-Este archivo define todo lo que el Cocinero sabe y puede hacer.
+Define la clase Reasoner, que representa el nivel de razonamiento base.
+Este módulo gestiona la lógica principal, genera resultados y los envía al nivel meta para su validación.
 
-```python
-# El Cocinero necesita saber quién es el Catador y dónde están sus herramientas
 from metalevel import MetaReasoner
 from lib.matrix import Matrix
 from lib.neuralnetwork import NeuralNetwork
 
-# Aquí definimos el plano de lo que es un "Cocinero"
 class Reasoner:
-    # Esta es la preparación inicial del Cocinero. Se ejecuta en cuanto lo contratamos.
     def __init__(self, mode):
-        # El Cocinero se pone una placa con su nombre.
         self._version = "CARINA version 3.1 (Python - Conectado)"
         self._mode = mode
-        
-        # IMPORTANTE: El Cocinero prepara su "Tablón de Anuncios".
-        # `[]` significa una lista vacía, lista para colgar notas.
         self.knowledge_base = []
 
-    # Esta es la receta para el "pastel de red neuronal".
-    def neuralnetwork_test(self):
-        # ... (pasos de la receta)
-        output = nn.feed_forward(inputs)
-        
-        # IMPORTANTE: "return" significa "entregar". El Cocinero ahora entrega
-        # el resultado (el pastel) a quien se lo pidió.
-        return output
+Componentes principales:
 
-    # ... (aquí está la receta de la matriz, que no usamos para la conexión)
+_version: identifica la versión actual del sistema.
 
-    # Esta es la lista de tareas principal del Cocinero.
-    def run(self):
-        # El Cocinero prepara el pastel y guarda el resultado en la variable 'output'.
-        output = self.neuralnetwork_test()
-        
-        # --- AQUÍ EMPIEZA LA CONEXIÓN ---
+_mode: define el modo de ejecución (por ejemplo, "single").
 
-        # 1. El Cocinero escribe la nota.
-        #    La 'f' antes de las comillas permite meter el resultado (`output`) dentro del texto.
-        fact = f"nn_output_is_{output[0]:.4f}"
-        
-        # 2. El Cocinero cuelga la nota en su Tablón de Anuncios.
-        #    `.append()` es la acción de "añadir al final de la lista".
-        self.knowledge_base.append(fact)
-        
-        # 3. El Cocinero contrata a un Catador.
-        metareasoner = MetaReasoner("single")
-        
-        # 4. El Cocinero llama al Catador y le da dos cosas:
-        #    - La nota que debe buscar (`fact`).
-        #    - El tablón donde debe buscar (`self.knowledge_base`).
-        metareasoner.knowledge_test(fact, self.knowledge_base)
-```
+knowledge_base: lista donde se almacenan los hechos generados.
 
-**En resumen:** El Cocinero hace un cálculo, escribe el resultado en una nota, la cuelga en un tablón y le pide al Catador que la revise.
+
+Método neuralnetwork_test()
+
+Ejecuta una prueba de red neuronal y devuelve la salida del modelo.
+
+def neuralnetwork_test(self):
+    output = nn.feed_forward(inputs)
+    return output
+
+Método run()
+
+Controla el flujo de trabajo del razonador.
+
+def run(self):
+    output = self.neuralnetwork_test()
+    fact = f"nn_output_is_{output[0]:.4f}"
+    self.knowledge_base.append(fact)
+    metareasoner = MetaReasoner("single")
+    metareasoner.knowledge_test(fact, self.knowledge_base)
+
+Descripción del proceso:
+
+1. Ejecuta el cálculo de la red neuronal.
+
+
+2. Formatea el resultado en una cadena (fact).
+
+
+3. Almacena el hecho en la base de conocimiento.
+
+
+4. Crea una instancia del nivel meta.
+
+
+5. Envía el hecho y la base para su validación.
+
+
+
 
 ---
 
-### **Archivo 3: `metalevel.py` (La Receta del Catador)**
+3. Archivo metalevel.py
 
-Este archivo define lo que el Catador sabe hacer.
+Define la clase MetaReasoner, responsable de evaluar la información producida por el razonador del nivel base.
 
-```python
-# Aquí definimos el plano de lo que es un "Catador"
 class MetaReasoner:
-    # ... (la preparación del Catador)
-
-    # Esta es la receta de "cómo catar".
-    # Recibe la "nota a buscar" y el "tablón de anuncios" del Cocinero.
     def knowledge_test(self, fact_to_check, knowledge_base):
-        
-        # LA MAGIA OCURRE AQUÍ
-        # `in` es una palabra clave de Python para comprobar si un elemento está DENTRO de una lista.
-        # Esta línea se traduce como: "¿Está la 'nota a buscar' DENTRO del 'tablón de anuncios'?"
-        # Python nos contesta con `True` (Verdadero) o `False` (Falso).
         if fact_to_check in knowledge_base:
-            
-            # Si la respuesta fue True, anuncia que la encontró.
             print(f"Meta-level: -> ¡ÉXITO! Nota '{fact_to_check}' encontrada.")
-        
         else:
-            # Si la respuesta fue False, anuncia que no la encontró.
             print(f"Meta-level: -> ¡FALLO! Nota '{fact_to_check}' no encontrada.")
-```
 
-**En resumen:** El Catador recibe una nota y un tablón. Usa la palabra mágica `in` de Python para ver si la nota está en el tablón y anuncia el resultado.
+Funcionamiento:
+
+Recibe un hecho (fact_to_check) y la base de conocimiento (knowledge_base).
+
+Utiliza el operador in para comprobar si el hecho existe dentro de la lista.
+
+Informa el resultado de la verificación mediante salida en consola.
+
+
+
+---
+
+🧩 Flujo General del Sistema
+
+1. Inicio:
+main.py ejecuta la función principal y crea el razonador.
+
+
+2. Razonamiento:
+Reasoner procesa una tarea (por ejemplo, una red neuronal) y genera un hecho.
+
+
+3. Almacenamiento:
+El hecho se guarda en la base de conocimiento.
+
+
+4. Supervisión:
+MetaReasoner recibe la base y valida si el hecho generado está correctamente registrado.
+
+
+5. Salida:
+El resultado se muestra en consola (éxito o fallo).
+
+
+
+
+---
+
+🧱 Dependencias
+
+Python 3.9+
+
+Módulos internos:
+
+lib.matrix — Operaciones matriciales.
+
+lib.neuralnetwork — Implementación del modelo de red neuronal.
+
+
+
+
+---
