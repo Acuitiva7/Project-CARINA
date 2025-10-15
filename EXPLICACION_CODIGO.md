@@ -1,6 +1,9 @@
-🧠 Proyecto CARINA
 
-Versión 3.1 (Python - Conectado)
+
+
+#🧠 Proyecto CARINA
+
+##Versión 3.1 (Python - Conectado)
 
 Carina es un sistema de razonamiento jerárquico implementado en Python.
 Está compuesto por dos niveles principales: un nivel de razonamiento base (Object-Level) y un nivel meta (Meta-Level) que supervisa y valida los resultados generados por el primero.
@@ -8,7 +11,7 @@ Está compuesto por dos niveles principales: un nivel de razonamiento base (Obje
 
 ---
 
-📁 Estructura del Proyecto
+## 📁 Estructura del Proyecto
 
 carina/
 │
@@ -22,7 +25,7 @@ carina/
 
 ---
 
-⚙️ Descripción General
+## ⚙️ Descripción General
 
 El sistema opera en dos niveles complementarios:
 
@@ -39,7 +42,7 @@ El flujo de ejecución comienza en main.py, que instancia al razonador base y po
 
 ---
 
-🚀 Ejecución del Programa
+## 🚀 Ejecución del Programa
 
 1. Archivo main.py
 
@@ -116,7 +119,7 @@ def run(self):
     metareasoner = MetaReasoner("single")
     metareasoner.knowledge_test(fact, self.knowledge_base)
 
-Descripción del proceso:
+## Descripción del proceso:
 
 1. Ejecuta el cálculo de la red neuronal.
 
@@ -137,7 +140,7 @@ Descripción del proceso:
 
 ---
 
-3. Archivo metalevel.py
+## 3. Archivo metalevel.py
 
 Define la clase MetaReasoner, responsable de evaluar la información producida por el razonador del nivel base.
 
@@ -148,7 +151,7 @@ class MetaReasoner:
         else:
             print(f"Meta-level: -> ¡FALLO! Nota '{fact_to_check}' no encontrada.")
 
-Funcionamiento:
+## Funcionamiento:
 
 Recibe un hecho (fact_to_check) y la base de conocimiento (knowledge_base).
 
@@ -160,7 +163,7 @@ Informa el resultado de la verificación mediante salida en consola.
 
 ---
 
-🧩 Flujo General del Sistema
+## 🧩 Flujo General del Sistema
 
 1. Inicio:
 main.py ejecuta la función principal y crea el razonador.
@@ -186,7 +189,7 @@ El resultado se muestra en consola (éxito o fallo).
 
 ---
 
-🧱 Dependencias
+## 🧱 Dependencias
 
 Python 3.9+
 
@@ -199,4 +202,3 @@ lib.neuralnetwork — Implementación del modelo de red neuronal.
 
 
 
----
