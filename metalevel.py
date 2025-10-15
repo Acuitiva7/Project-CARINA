@@ -1,34 +1,42 @@
 class MetaReasoner:
     def __init__(self, mode):
-        self._version = "CARINA meta-reasoner version 0.1 (Python)"
+        """
+        Inicializa el MetaReasoner.
+        
+        Args:
+            mode (str): El modo de operación.
+        """
+        self._version = "CARINA meta-reasoner version 0.2 (Python - Conectado)"
         self._mode = mode
 
-    def knowledge_test(self, p, l):
-        # Nota: La lógica original en JS era incompleta y no funcional.
-        # El bucle 'for (var i in objeto)' no se pudo traducir porque la variable 'objeto' no estaba definida.
-        # Este era el código original problemático en JavaScript:
-        #
-        # for (var i in objeto) {
-        #     if (objeto.hasOwnProperty(i)) {
-        #         resultado += `${nombreObjeto}.${i} = ${objeto[i]}\n`;
-        #     }
-        # }
-        #
-        # La lógica del bucle se ha simplificado en la traducción.
-        result = ""
-        i = 0
-        while i < 5:
-            i += 1
-            result += str(i)
+    def knowledge_test(self, fact_to_check, knowledge_base):
+        """
+        Realiza la tarea de razonamiento fundamental: verificar si un hecho existe en la base de conocimiento.
         
-        print(result)
-
-        if p in l:
-            return "Yes"
+        Args:
+            fact_to_check (str): El hecho que se quiere verificar.
+            knowledge_base (list): La base de conocimiento (una lista de strings) del Nivel de Objeto.
+            
+        Returns:
+            bool: True si el hecho se encuentra, False en caso contrario.
+        """
+        # El comentario original sobre el código JS se ha eliminado para mayor claridad,
+        # ya que esta función ahora es funcional y está conectada.
+        print(f"Meta-level: Checking for fact '{fact_to_check}'...")
+        
+        # El 'razonamiento' se reduce a esta simple comprobación.
+        if fact_to_check in knowledge_base:
+            print(f"Meta-level: -> SUCCESS: Fact '{fact_to_check}' found in knowledge base.")
+            return True
         else:
-            return "No"
+            print(f"Meta-level: -> FAILURE: Fact '{fact_to_check}' not found in knowledge base.")
+            return False
 
     def run(self):
+        """
+        Método de ejecución original. Ya no se utiliza en el flujo principal,
+        pero se mantiene por si se quiere ejecutar el meta-nivel de forma aislada.
+        """
         print("----> Carina's Metalevel is running now ")
         print(f"----> Current version: {self._version}")
         print(f"----> Metalevel is running in mode: {self._mode}")
